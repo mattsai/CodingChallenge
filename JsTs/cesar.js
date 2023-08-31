@@ -5,6 +5,12 @@ function generateAlphabet(start,end){
     }
     return alph
 }
+
+function getNewIndex(index,k){
+    return (index + k) % 26;
+}
+
+
 function caesarCipher(s, k) {
     //edge case lul, no ops 
     if(k==0 || k==26) return s
@@ -18,13 +24,11 @@ function caesarCipher(s, k) {
         let codePoint = current.charCodeAt(0)
         //lower
         if(codePoint >=97 & codePoint <= 122){
-            let newIndex = lowercaseArray.indexOf(current) + k 
-            newIndex%=26
+            let newIndex = getNewIndex(lowercaseArray.indexOf(current),k)  
             acc+=lowercaseArray[newIndex]
         //upper
         }else if(codePoint >=65 & codePoint <= 90){
-            let newIndex = uppercaseArray.indexOf(current) + k 
-            newIndex%=26
+            let newIndex = getNewIndex(uppercaseArray.indexOf(current),k )
             acc+=uppercaseArray[newIndex]
         //none
         }else{
